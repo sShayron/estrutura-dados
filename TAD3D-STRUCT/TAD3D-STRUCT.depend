@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1550193411 source:c:\devc\tad3d-struct\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
