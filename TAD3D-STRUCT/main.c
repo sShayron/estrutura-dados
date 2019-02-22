@@ -42,9 +42,9 @@ Ponto centroGeom (Ponto *vetPtos, int nPtos) {
     int i;
     Ponto p = criaPonto(0, 0, 0);
     for(i = 0;i < nPtos;i++) {
-        p->x = p->x + vetPtos[i].x;
-        p->y = p->y + vetPtos[i].y;
-        p->z = p->z + vetPtos[i].z;
+        p->x = p->x + vetPtos[i]->x;
+        p->y = p->y + vetPtos[i]->y;
+        p->z = p->z + vetPtos[i]->z;
     }
     p->x = p->x/nPtos;
     p->y = p->y/nPtos;
@@ -70,14 +70,14 @@ int main()
     printAd(p2);
     printf("\n\nDistancia entre os pontos: %f\n\n", distEntrePtos(p, p2));
 
-    Ponto pVet = (Ponto)malloc(sizeof(Ponto));
-    p[0] = p;
-    p[1] = p2;
+    Ponto *pVet = (Ponto*)malloc(2*sizeof(Ponto));
+    pVet[0] = p;
+    pVet[1] = p2;
     Ponto centroGeo = centroGeom(pVet, 2);
-    printPto(p2);
+    printPto(centroGeo);
 
+    free(pVet);
     free(p);
     free(p2);
-    free(pVet);
     return 0;
 }
