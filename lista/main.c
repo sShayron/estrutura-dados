@@ -16,6 +16,7 @@ typedef struct Tlista {
 
 //adiciona nó depois do iterador
 void anexLista(Lista lst, TipoL elem) {
+    pListaNo no = malloc(sizeof(struct ListaNo));
 }
 
 //adiciona nó antes do iterador
@@ -48,6 +49,7 @@ TipoL infoLista(Lista lst) {
 
 // retorna a quantidade de elementos na lista
 TipoL longLista(Lista lst) {
+    return lst->longitude;
 }
 
 // retorna verdadeiro se o iterador estiver indefinido
@@ -94,12 +96,21 @@ int estaLista(Lista lst, TipoL elem) {
 int main()
 {
     int i;
+
+    // COM STRUCT
     struct ListaNo p;
     printf("Digita valor q vai ser info do no: ");
     scanf("%i", &i);
     p.info = i;
     p.prox = NULL;
-
     printf("Valor escolhido: %i", p.info);
+
+    // COM PONTEIRO
+    pListaNo pp = malloc(sizeof(struct ListaNo));
+    printf("\n\nDigita valor q vai ser info do no: ");
+    scanf("%i", &i);
+    pp->info = i;
+    pp->prox = NULL;
+    printf("Valor escolhido: %i", pp->info);
     return 0;
 }
