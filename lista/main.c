@@ -2,27 +2,27 @@
 #include <stdlib.h>
 
 typedef int TipoL;
-typedef struct {
+typedef struct ListaNo {
     TipoL info;
     struct ListaNo *prox;
-} ListaNo, *pListaNo;
-typedef struct {
+} *pListaNo;
+typedef struct Tlista {
     pListaNo
         primeiro,
         ultimo,
         iterador;
     int longitude;
-} Tlista, *Lista;
+} *Lista;
 
-//adiciona nó depois do iterador
+//adiciona nÃ³ depois do iterador
 void anexLista(Lista lst, TipoL elem) {
 }
 
-//adiciona nó antes do iterador
+//adiciona nÃ³ antes do iterador
 void insLista(Lista lst, TipoL elem) {
 }
 
-//remove um nó da lista
+//remove um nÃ³ da lista
 void elimLista(Lista lst) {
 }
 
@@ -34,7 +34,7 @@ void primLista(Lista lst) {
 void ultLista(Lista lst) {
 }
 
-// avança o iterador uma posicao
+// avanÃ§a o iterador uma posicao
 void segLista(Lista lst){
 }
 
@@ -93,9 +93,13 @@ int estaLista(Lista lst, TipoL elem) {
 
 int main()
 {
+    int i;
+    struct ListaNo p;
+    printf("Digita valor q vai ser info do no: ");
+    scanf("%i", &i);
+    p.info = i;
+    p.prox = NULL;
 
-
-
-    printf("Hello world!\n");
+    printf("Valor escolhido: %i", p.info);
     return 0;
 }
