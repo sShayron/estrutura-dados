@@ -17,10 +17,37 @@ typedef struct Tlista {
 //adiciona nó depois do iterador
 void anexLista(Lista lst, TipoL elem) {
     pListaNo no = malloc(sizeof(struct ListaNo));
+    no->info = elem;
+    if (lst->iterador == NULL) {
+        lst->iterador = no;
+        lst->primeiro = no;
+        lst->ultimo = no;
+        return;
+    }
+    if (lst->iterador->prox != NULL) {
+        no->prox = lst->iterador->prox;
+        lst->iterador->prox = no;
+    } else {
+        lst->ultimo = no;
+    }
+    lst->iterador = no;
 }
 
 //adiciona nó antes do iterador
 void insLista(Lista lst, TipoL elem) {
+    pListaNo no = malloc(sizeof(struct ListaNo));
+    no->info = elem;
+    if (lst->iterador == NULL) {
+        lst->iterador = no;
+        lst->primeiro = no;
+        lst->ultimo = no;
+        return;
+    }
+    if (lst->iterador == lst->primeiro) {
+        lst->primeiro = no;
+    }
+    no->prox = lst->iterador;
+    lst->iterador = no;
 }
 
 //remove um nó da lista
@@ -61,6 +88,28 @@ void printLista(Lista lst) {
         printf("%i", infoLista(lst));
     }
 }
+
+int iguaisListas(Lista lst1, Lista lst2){
+
+    //verificar se lst1 e lst2 sao vazias
+    if(longLista(lst1) == 0 && longLista(lst2)== 0)
+        return 1;
+    //senao se long de lst1 == long lst2
+    if(longLista(lst1) == longLista(lst2)){
+        //percorrer lst1 e lst2 e comparar noh a noh
+        for(primLista(lst1), primLista(lst2); !fimLista(lst1); segLista(lst1), segLista(lst2)){
+            if(infoLista(lst1) != infoLista(lst2))
+                return 0;
+        }
+        return 1;
+    }
+    else{
+        //senao nao sao iguais
+        return 0;
+    }
+
+}
+
 
 
 TipoL maiorElemento(Lista lst) {
