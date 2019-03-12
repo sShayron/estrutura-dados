@@ -13,6 +13,14 @@ typedef struct Tlista {
         iterador;
     int longitude;
 } *Lista;
+
+pListaNo inicNo( TipoL elem ) {
+    pListaNo novoNo = (pListaNo)malloc(sizeof(struct ListaNo));
+    novoNo -> info = elem;
+    novoNo -> prox = NULL;
+
+    return novoNo;
+}
 void incrementaLongitude(Lista lst) {
     lst->longitude = lst->longitude + 1;
 }
@@ -42,8 +50,7 @@ Lista inicLista(void) {
 
 //adiciona nó depois do iterador
 void anexLista(Lista lst, TipoL elem) {
-    pListaNo no = malloc(sizeof(struct ListaNo));
-    no->info = elem;
+    pListaNo no = inicNo(elem);
     if (lst->longitude == 0) {
         setIterador(lst, no);
         setPrimeiro(lst, no);
@@ -63,8 +70,7 @@ void anexLista(Lista lst, TipoL elem) {
 
 //adiciona nó antes do iterador
 void insLista(Lista lst, TipoL elem) {
-    pListaNo no = malloc(sizeof(struct ListaNo));
-    no->info = elem;
+    pListaNo no = inicNo(elem);
     if (lst->longitude == 0) {
         setIterador(lst, no);
         setPrimeiro(lst, no);
@@ -263,7 +269,7 @@ int ordernadaLista(Lista lst) {
 }
 // 6)
 void adicLista(Lista lst, TipoL elem) {
-    pListaNo no = malloc(sizeof(struct ListaNo));
+    pListaNo no = inicNo(elem);
     no->info = elem;
 
     if (longLista(lst) == 0) {
@@ -524,21 +530,31 @@ int main()
     int i;
 
     // COM STRUCT
-    struct ListaNo p;
-    printf("Digita valor q vai ser info do no: ");
-    scanf("%i", &i);
-    p.info = i;
-    p.prox = NULL;
-    printf("Valor escolhido: %i", p.info);
+//    struct ListaNo p;
+//    printf("Digita valor q vai ser info do no: ");
+//    scanf("%i", &i);
+//    p.info = i;
+//    p.prox = NULL;
+//    printf("Valor escolhido: %i", p.info);
+//
+//    // COM PONTEIRO
+//    pListaNo pp = malloc(sizeof(struct ListaNo));
+//    printf("\n\nDigita valor q vai ser info do no: ");
+//    scanf("%i", &i);
+//    pp->info = i;
+//    pp->prox = NULL;
+//    printf("Valor escolhido: %i", pp->info);
+//    return 0;
 
-    // COM PONTEIRO
-    pListaNo pp = malloc(sizeof(struct ListaNo));
-    printf("\n\nDigita valor q vai ser info do no: ");
-    scanf("%i", &i);
-    pp->info = i;
-    pp->prox = NULL;
-    printf("Valor escolhido: %i", pp->info);
-    return 0;
+    Lista lst1 = inicLista();
+    anexLista(lst1, 1);
+    anexLista(lst1, 2);
+//    printf("info: %i", lst1->iterador->info);
+//    printf("longitude: %i", lst1->longitude);
+//    printf("prox: %i", lst1->iterador->prox);
+//    printLista(lst1);
+//    printf("aaaaaaaaaa: %i", lst1->iterador->info);
 
-
+//    diferencaLista(lst1, lst2);
+//    primLista(lst1);
 }
