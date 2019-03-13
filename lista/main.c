@@ -583,6 +583,8 @@ int main()
     }
 
     printf("\n\n Maior elemento: %i", maiorElemento(lst1));
+
+//    ordenarLista(lst1); // CORRIGIR
 //    diferencaLista(lst1, lst2);
 
     return 0;
