@@ -364,6 +364,7 @@ void removeNo(Lista lst, pListaNo no) {
     noTemp->prox = NULL;
     setUltimo(lst, noTemp);
     decrementaLongitude(lst);
+    free(no);
 
 }
 pListaNo noNaPosicao(Lista lst, int pos) {
