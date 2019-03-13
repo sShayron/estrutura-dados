@@ -1,10 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Fazer com lista duplamente encadeada agora
+//anexLista
+//insLista
+//removeNo
+
 typedef int TipoL;
 typedef struct ListaNo {
     TipoL info;
     struct ListaNo *prox;
+    struct ListaNo *ant;
 } *pListaNo;
 typedef struct Tlista {
     pListaNo
