@@ -22,10 +22,10 @@ pListaNo inicNo( TipoL elem ) {
     return novoNo;
 }
 void incrementaLongitude(Lista lst) {
-    lst->longitude = lst->longitude + 1;
+    lst->longitude++;;
 }
 void decrementaLongitude(Lista lst) {
-    lst->longitude = lst->longitude - 1;
+    lst->longitude--;
 }
 void setIterador(Lista lst, pListaNo no) {
     lst->iterador = no;
@@ -36,11 +36,8 @@ void setPrimeiro(Lista lst, pListaNo no) {
 void setUltimo(Lista lst, pListaNo no) {
     lst->ultimo = no;
 }
-void setProximo(pListaNo no, pListaNo prox) {
-    no->prox = prox;
-}
 Lista inicLista(void) {
-    Lista lst = malloc(sizeof(struct Tlista));
+    Lista lst = (Lista)malloc(sizeof(struct Tlista));
     setPrimeiro(lst, NULL);
     setUltimo(lst, NULL);
     setIterador(lst, NULL);
@@ -59,11 +56,11 @@ void anexLista(Lista lst, TipoL elem) {
         return;
     }
     if (lst->iterador->prox != NULL) {
-        setProximo(no, lst->iterador->prox);
+        no->prox = lst->iterador->prox;
     } else {
         setUltimo(lst, no);
     }
-    setProximo(lst->iterador->prox, no);
+    lst->iterador->prox = no;
     setIterador(lst, no);
     incrementaLongitude(lst);
 }
@@ -85,10 +82,9 @@ void insLista(Lista lst, TipoL elem) {
         while(p->prox != lst->iterador) {
             p = p->prox;
         }
-
-        setProximo(p, no);
+        p->prox = no;
     }
-    setProximo(no, lst->iterador);
+    no->prox = lst->iterador;
     setIterador(lst, no);
     incrementaLongitude(lst);
 }
@@ -110,6 +106,8 @@ void ultLista(Lista lst) {
 
 // avança o iterador uma posicao
 void segLista(Lista lst){
+    if (lst->iterador == NULL)
+        return;
     lst->iterador = lst->iterador->prox;
 }
 
@@ -127,6 +125,8 @@ void posLista( Lista lst, int pos ) {
 
 // retorna o elemento sob o iterador
 TipoL infoLista(Lista lst) {
+    if (lst->iterador == NULL)
+        return NULL;
     return lst->iterador->info;
 }
 
@@ -149,7 +149,7 @@ void printLista(Lista lst) {
 TipoL maiorElemento(Lista lst) {
     TipoL maior;
     if (longLista(lst) == 0) {
-        return NULL;
+        return 0;
     } else {
         primLista(lst);
         maior = infoLista(lst);
@@ -281,7 +281,7 @@ void adicLista(Lista lst, TipoL elem) {
     }
 
     ultLista(lst);
-    setProximo(lst->iterador->prox, no);
+    lst->iterador->prox->prox = no;
     setUltimo(lst, no);
     setIterador(lst, no);
     incrementaLongitude(lst);
@@ -357,7 +357,7 @@ void removeNo(Lista lst, pListaNo no) {
 
     setIterador(lst, noTemp);
     if (noTemp->prox->prox != NULL) {
-        setProximo(noTemp, noTemp->prox->prox);
+        noTemp->prox = noTemp->prox->prox;
         decrementaLongitude(lst);
         return;
     }
@@ -394,8 +394,8 @@ int posicaoNo(Lista lst, pListaNo no) {
 // 12)
 void simplificarLista(Lista lst) {
     pListaNo noTemp = malloc(sizeof(struct ListaNo));
-
-    for(int i = 1; i <= longLista(lst); i++) {
+    int i;
+    for(i = 1; i <= longLista(lst); i++) {
         noTemp = noNaPosicao(lst, i);
 
         if (numOcorrenciasLista(lst, noTemp->info) > 1) {
@@ -404,7 +404,8 @@ void simplificarLista(Lista lst) {
     }
 }
 int estaNoArray(TipoL array[], int arraySize, TipoL value) {
-    for(int i = 0; i < arraySize; i++) {
+    int i;
+    for(i = 0; i < arraySize; i++) {
         if (array[i] == value) {
             return 1;
         }
@@ -419,10 +420,11 @@ int numDiferentesLista(Lista lst) {
     TipoL comparados[longLista(lst)];
     pListaNo noTemp1 = malloc(sizeof(struct ListaNo));
     pListaNo noTemp2 = malloc(sizeof(struct ListaNo));
-
-    for(int i = 1; i <= longLista(lst); i++) {
+    int i;
+    int x;
+    for(i = 1; i <= longLista(lst); i++) {
         noTemp1 = noNaPosicao(lst, i);
-        for(int x = i + 1; x <= longLista(lst); x++) {
+        for(x = i + 1; x <= longLista(lst); x++) {
             noTemp2 = noNaPosicao(lst, x);
             comparados[i] = noTemp2->info;
             if (
@@ -444,8 +446,8 @@ TipoL maxOcorrenciaLista(Lista lst) {
     TipoL elem;
     TipoL maisOcorrencia;
     int elemQtds = 0;
-
-    for(int i = 1; i <= longLista(lst); i++) {
+    int i;
+    for(i = 1; i <= longLista(lst); i++) {
         elem = noNaPosicao(lst, i)->info;
         int elemNumeroOcorrencias = numOcorrenciasLista(lst, elem);
         if (elemNumeroOcorrencias > elemQtds) {
@@ -461,8 +463,8 @@ int ultOcorrenciaLista(Lista lst, TipoL elem){
     if (numOc == 0)
         return 0;
     int pos = 1;
-
-    for (int i = 1; i <= longLista(lst); i++) {
+    int i;
+    for (i = 1; i <= longLista(lst); i++) {
         if (noNaPosicao(lst, i)->info == elem) {
             pos = i;
 
@@ -474,7 +476,8 @@ int ultOcorrenciaLista(Lista lst, TipoL elem){
 }
 //17) Elimina da lista lst todos os elementos compreendidos entre a posição p1 e p2, inclusive:
 void eliminarLista(Lista lst, int p1, int p2) {
-    for (int i = 1; i <= longLista(lst); i++) {
+    int i;
+    for (i = 1; i <= longLista(lst); i++) {
         if (i >= p1 && i <= p2) {
             removeNo(lst, noNaPosicao(lst, i));
         }
@@ -488,10 +491,11 @@ void ordenarLista(Lista lst) {
 
     pListaNo noTemp1 = malloc(sizeof(struct ListaNo));
     pListaNo noTemp2 = malloc(sizeof(struct ListaNo));
-
-    for(int i = 1; i <= longLista(lst); i++) {
+    int i;
+    int x;
+    for(i = 1; i <= longLista(lst); i++) {
         noTemp1 = noNaPosicao(lst, i);
-        for(int x = i + 1; x <= longLista(lst); x++) {
+        for(x = i + 1; x <= longLista(lst); x++) {
             noTemp2 = noNaPosicao(lst, x);
             if (noTemp2->info > noTemp1->info) {
                 if (noTemp1 == lst->primeiro) {
@@ -513,10 +517,11 @@ void diferencaLista( Lista lst1, Lista lst2) {
 
     pListaNo noTemp1 = malloc(sizeof(struct ListaNo));
     pListaNo noTemp2 = malloc(sizeof(struct ListaNo));
-
-    for(int i = 1; i <= longLista(lst1); i++) {
+    int i;
+    int x;
+    for(i = 1; i <= longLista(lst1); i++) {
         noTemp1 = noNaPosicao(lst1, i);
-        for(int x = 1; x <= longLista(lst2); x++) {
+        for(x = 1; x <= longLista(lst2); x++) {
             noTemp2 = noNaPosicao(lst2, x);
             if (noTemp1->info == noTemp2->info) {
                 removeNo(lst1, noTemp1);
@@ -548,13 +553,30 @@ int main()
 
     Lista lst1 = inicLista();
     anexLista(lst1, 1);
+    insLista(lst1, 25);
+    anexLista(lst1, 3);
+    anexLista(lst1, 4);
+    insLista(lst1, 30);
     anexLista(lst1, 2);
-//    printf("info: %i", lst1->iterador->info);
-//    printf("longitude: %i", lst1->longitude);
-//    printf("prox: %i", lst1->iterador->prox);
-//    printLista(lst1);
-//    printf("aaaaaaaaaa: %i", lst1->iterador->info);
+    anexLista(lst1, 7);
 
+    Lista lst2 = inicLista();
+    anexLista(lst2, 1);
+    insLista(lst2, 25);
+    anexLista(lst2, 3);
+    anexLista(lst2, 4);
+    insLista(lst2, 30);
+    anexLista(lst2, 2);
+    anexLista(lst2, 7);
+
+    if (iguaisListas(lst1, lst2)) {
+        printf("SAO IGUAIS");
+    } else {
+        printf("NAO SAO IGUAIS");
+    }
+
+    printf("\n\n Maior elemento: %i", maiorElemento(lst1));
 //    diferencaLista(lst1, lst2);
-//    primLista(lst1);
+
+    return 0;
 }
