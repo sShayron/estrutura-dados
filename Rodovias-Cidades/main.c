@@ -9,10 +9,7 @@ typedef struct TCidades {
 
 typedef struct TRodovias {
     char nome[50]; // nome da rodovia
-    struct TRodovias
-        *iterator,
-        *primeiro,
-        *ultimo;
+    struct TRodovias *primeiro
     pCidades cidades; // cidades que a rodovia passa
 } *pRodovias;
 
