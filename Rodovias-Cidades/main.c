@@ -9,13 +9,14 @@ typedef struct TCidades {
 
 typedef struct TRodovias {
     char nome[50]; // nome da rodovia
-    struct TRodovias *primeiro
+    struct TRodovias
+        *primeiro,
+        *iterator,
+        *ultimo;
     pCidades cidades; // cidades que a rodovia passa
 } *pRodovias;
 
-
-int main()
-{
+int main() {
 
     printf("Hello world!\n");
     return 0;
