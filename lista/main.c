@@ -95,11 +95,6 @@ void insLista(Lista lst, TipoL elem) {
     incrementaLongitude(lst);
 }
 
-//remove um nó da lista
-void elimLista(Lista lst) {
-
-}
-
 //coloca iterador sobre o primeiro element
 void primLista(Lista lst) {
     lst->iterador = lst->primeiro;
@@ -148,7 +143,7 @@ int fimLista(Lista lst) {
 
 void printLista(Lista lst) {
     for(primLista(lst); !fimLista(lst); segLista(lst)) {
-        printf("%i", infoLista(lst));
+        printf("[%i]", infoLista(lst));
     }
 }
 
@@ -339,6 +334,7 @@ pListaNo noNaPosicao(Lista lst, int pos) {
     int i = 1;
     if (pos > longLista(lst)) {
         printf("noNaPosicao: Error Lista só tem %i posições", lst->longitude);
+        return;
     }
     pListaNo noTemp;
     noTemp = lst->primeiro;
@@ -352,17 +348,20 @@ pListaNo noNaPosicao(Lista lst, int pos) {
     return noTemp;
 }
 void removeNo(Lista lst, pListaNo no) {
-    if(!estaNaLista(lst, no->info))
-        printf("removeNo: Error No nao esta na lista"); return;
+    if(!estaNaLista(lst, no->info)) {
+        printf("removeNo: Error No nao esta na lista");
+        return;
+    }
 
     if (longLista(lst) == 1) {
         setIterador(lst, NULL);
         setPrimeiro(lst, NULL);
         setUltimo(lst, NULL);
         decrementaLongitude(lst);
+        free(no);
         return;
     }
-    setIterador(lst, no->prox);
+
     if (no == lst->primeiro) {
         setPrimeiro(lst, no->prox);
         decrementaLongitude(lst);
@@ -372,7 +371,9 @@ void removeNo(Lista lst, pListaNo no) {
 
     pListaNo noAux;
     int i;
-    for(i = 1; i <= longLista(lst); i++) {
+    int finded = 0;
+
+    for(i = 1; finded == 0; i++) {
         noAux = noNaPosicao(lst, i);
 
         if (noAux->prox == no) {
@@ -381,15 +382,17 @@ void removeNo(Lista lst, pListaNo no) {
             if (no == lst->ultimo) {
                 setUltimo(lst, noAux);
             }
-            i = longLista(lst);
+            finded = 1;
         }
     }
     free(no);
     decrementaLongitude(lst);
 }
 int posicaoNo(Lista lst, pListaNo no) {
-    if(!estaNaLista(lst, no->info))
-        printf("posicaoNo: Error No nao esta na lista"); return 0;
+    if(!estaNaLista(lst, no->info)) {
+        printf("posicaoNo: Error No nao esta na lista");
+        return 0;
+    }
     int i = 1;
     pListaNo noTemp = malloc(sizeof(struct ListaNo));
     noTemp = lst->primeiro;
@@ -448,8 +451,10 @@ int numDiferentesLista(Lista lst) {
 
 // 15)
 TipoL maxOcorrenciaLista(Lista lst) {
-    if(longLista(lst) == 0)
-        printf("maxOcorrenciaLista: Error lista vazia"); return 0;
+    if(longLista(lst) == 0) {
+        printf("maxOcorrenciaLista: Error lista vazia");
+        return 0;
+    }
 
     TipoL elem;
     TipoL maisOcorrencia;
@@ -527,10 +532,18 @@ void diferencaLista( Lista lst1, Lista lst2) {
         for(x = i + 1; x <= longLista(lst2); x++) {
             noTemp2 = noNaPosicao(lst2, x);
             if (noTemp1->info == noTemp2->info) {
-                printf("NO IGUAL");
                 removeNo(lst1, noTemp1);
             }
         }
+    }
+}
+// destroi lista
+void elimLista(Lista lst) {
+    pListaNo noAserDesalocado;
+    int i;
+
+    for(i = longLista(lst); i > 0; i--) {
+        removeNo(lst, noNaPosicao(lst, i));
     }
 }
 
@@ -572,6 +585,13 @@ int main()
     insLista(lst2, 11);
     anexLista(lst2, 12);
     anexLista(lst2, 13);
+    anexLista(lst2, 13);
+
+    printf("Lista 1:");
+    printLista(lst1);
+    printf("\n\n");
+    printf("Lista 2: ");
+    printLista(lst2);
 
     if (iguaisListas(lst1, lst2)) {
         printf("SAO IGUAIS");
@@ -579,35 +599,37 @@ int main()
         printf("NAO SAO IGUAIS");
     }
 
-//    printf("\n\n Maior elemento: %i", maiorElemento(lst1));
-//
-//    Lista lst3 = inicLista();
-//    anexLista(lst3, 3);
-//    anexLista(lst3, 2);
-//    anexLista(lst3, 1);
-//    anexLista(lst3, 5);
-//    anexLista(lst3, 4);
-//
-//    printf("\nPRIMEIRO: %i", lst3->primeiro->info);
-//    printf("\N ULTIMO: %i", lst3->ultimo->info);
-//
-//    printf("\n\n");
-//
-//    printLista(lst3);
-//
-//    ordenarLista(lst3); // CORRIGIR
-//
-//    printf("\n\nordenada:");
-//
-//    printLista(lst3);
-    printf("\n\n");
-    printLista(lst2);
-    printf("\n\n");
-    printLista(lst1);
+    printf("\n\n Maior elemento Lista 1: %i", maiorElemento(lst1));
+
     diferencaLista(lst1, lst2);
+    printf("\n\n");
+    printf("Lista 1 apos aplicar diferenca lista com lista 2: ");
+    printLista(lst1);
+
+    printf("\n\nmaxOcorrencia lista 2: %i", maxOcorrenciaLista(lst2));
+
+    Lista lst3 = inicLista();
+    anexLista(lst3, 3);
+    anexLista(lst3, 2);
+    anexLista(lst3, 1);
+    anexLista(lst3, 5);
+    anexLista(lst3, 4);
 
     printf("\n\n");
-    printLista(lst1);
+
+    printf("Lista 3: ");
+    printLista(lst3);
+
+    ordenarLista(lst3); // CORRIGIR
+
+    printf("\n\nLista 3 ordenada: ");
+
+    printLista(lst3);
+
+    elimLista(lst3);
+    printf("\n\nLista 3 apos elimLista: ");
+    printLista(lst3);
+
 
 
     return 0;
