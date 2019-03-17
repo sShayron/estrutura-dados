@@ -86,10 +86,16 @@ void exibeCidades(pRodovia rodovia) {
     while(rodovia->cidade != NULL) {
         printf("%s", rodovia->cidade->nome);
         if (rodovia->cidade->prox != NULL) {
-            printf("->");
+            printf(" -> ");
         }
         rodovia->cidade = rodovia->cidade->prox;
     }
+}
+
+void exibeRodoviaInfos(pRodovia rodovia) {
+    printf("Nome da rodovia: %s", rodovia->nome);
+    printf("\nPassa pelas cidades: ");
+    exibeCidades(rodovia);
 }
 
 
@@ -106,8 +112,6 @@ int main() {
     pRodovia rodovia = criaRodovia("BR-101", NULL, NULL);
     anexCidade(rodovia, vilavelha);
     anexCidade(rodovia, vitoria);
-    printf("Nome da rodovia: %s", rodovia->nome);
-    printf("\nPassa pelas cidades:\n");
-    exibeCidades(rodovia);
+    exibeRodoviaInfos(rodovia);
     return 0;
 }
