@@ -1,20 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct TCidades {
+// Tipo Cidade
+typedef struct TCidade {
     char nome[50];
-    struct TCidades *prox;
-    struct TCidades *ant;
-} *pCidades;
+    struct TCidade *prox;
+    struct TCidade *ant;
+} *pCidade;
 
-typedef struct TRodovias {
-    char nome[50]; // nome da rodovia
-    struct TRodovias
+// Tipo Rodovia
+typedef struct TRodovia {
+    char nome[50];
+    struct TCidade cidades;
+    struct TRodovia *prox;
+} *pRodovia;
+
+// Lista de rodovias
+typedef struct TLista {
+    struct TRodovia
         *primeiro,
         *iterator,
         *ultimo;
-    pCidades cidades; // cidades que a rodovia passa
-} *pRodovias;
+    int tamanho;
+} *pLista;
+
+void setPrimeiro(pLista lst, pRodovia rodovia) {
+    lst->primeiro = rodovia;
+}
 
 int main() {
 
