@@ -177,12 +177,6 @@ pLista rodoviasCidade(char nomeCidade[120], pLista lstRodovias) {
 
 
 int main() {
-
-//    printf("Hello world!\n");
-//    char val[61];
-//    printf("val: ");
-//    scanf("%s", val);
-//    printf("O nome armazenado foi: %s", val);
     // BR 101
     pCidade br101c1 = criaCidade("Rio de Janeiro", NULL, NULL);
     pCidade br101c2 = criaCidade("Natal", NULL, NULL);
