@@ -9,10 +9,14 @@ typedef struct Pilha{
     TipoP info[MAX];
 } *pPilha;
 
-Pilha inicPilha() {
-    Pilha p = (Pilha)malloc(sizeof(struct TPilha));
+pPilha inicPilha() {
+    pPilha p = (pPilha)malloc(sizeof(struct Pilha));
     p->topo = -1;
     return p;
+}
+
+int cheiaPilha(pPilha p) {
+    return p->topo == MAX - 1;
 }
 
 int vaziaPilha(pPilha p) {
@@ -20,7 +24,7 @@ int vaziaPilha(pPilha p) {
 }
 
 void push(pPilha p, TipoP elem) {
-    if (p->topo == MAX - 1) {
+    if (cheiaPilha(p)) {
         printf("\nPilha cheia\n");
         return;
     }
@@ -33,7 +37,7 @@ TipoP pop(pPilha p) {
 
     if (vaziaPilha(p)) {
         printf("\nPilha vazia\n");
-        return;
+        return -1; // error
     }
 
     elem = p->info[p->topo];
@@ -48,13 +52,29 @@ void destruirPilha(pPilha p) {
 TipoP infoPilha(pPilha p){
     if(vaziaPilha(p)) {
         printf("\nPilha vazia\n");
-        return;
+        return -1; // error
     }
     return p->info[p->topo];
+}
+
+void printPilha(pPilha p) {
+    if(vaziaPilha(p)) {
+        printf("\nPilha vazia\n");
+        return;
+    }
+    int i;
+    for(i = p->topo; i >= 0; i--) {
+        printf("[%i]: %i\n", i, p->info[i]);
+    }
 }
 
 int main()
 {
     printf("Hello world!\n");
+    pPilha p = inicPilha();
+    push(p, 10);
+    push(p, 20);
+    push(p, 30);
+    printPilha(p);
     return 0;
 }
