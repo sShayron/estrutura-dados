@@ -90,7 +90,6 @@ pRodovia criaRodovia(char nome[MAX], pCidade cidade, pRodovia prox) {
 
 pCidade criaCidade(char nome[MAX], pCidade ant, pCidade prox) {
     pCidade cidade = (pCidade)malloc(sizeof(struct TCidade));
-    printf("\n\nxxxxxxxxx%szzzzzzzzzzz\n\n", nome);
     strcpy(cidade->nome, nome);
     cidade->ant = ant;
     cidade->prox = prox;
@@ -218,7 +217,7 @@ int readCitiesAndRoadsFromFile(FILE *fCities,  FILE *fRoads,  pLista lstRodovias
 				j++; // next free position for a letter (char)
 				i++;
 			}
-			printf("\n cidade:  %s \n", cidade);
+//			printf("\n cidade:  %s \n", cidade);
 
 			//add city to the list of cities
 			pCidade cidadeX = criaCidade(cidade, NULL, NULL);
