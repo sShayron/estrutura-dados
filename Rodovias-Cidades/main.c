@@ -156,7 +156,7 @@ void exibeRodoviasNaLista(pLista lst) {
         printf("\n");
     }
 }
-pLista rodoviasCidade(char nomeCidade[120], pLista lstRodovias) {
+pLista rodoviasCidade(char nomeCidade[MAX], pLista lstRodovias) {
     pLista newLstRodovias = inicLista();
     pRodovia newRodovia;
     pCidade tmp;
