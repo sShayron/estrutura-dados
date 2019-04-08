@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1554685252 source:c:\projetos\c\lista-lib\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"lista.c"
+	"pilha.c"
+	"fila.c"
+	"banco.c"
+	"programa-impressao.c"
+
+1554512558 c:\projetos\c\lista-lib\lista.c
+	"lista.h"
+
+1554512560 c:\projetos\c\lista-lib\lista.h
+
+1554662431 c:\projetos\c\lista-lib\pilha.c
+	"pilha.h"
+	"lista.h"
+
+1554663026 c:\projetos\c\lista-lib\pilha.h
+	"lista.h"
+
+1554681038 c:\projetos\c\lista-lib\fila.c
+	"fila.h"
+	"lista.h"
+
+1554680288 c:\projetos\c\lista-lib\fila.h
+	"lista.h"
+
+1554684363 c:\projetos\c\lista-lib\banco.c
+
+1554686326 c:\projetos\c\lista-lib\programa-impressao.c
+
