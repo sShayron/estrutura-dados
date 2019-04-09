@@ -46,8 +46,9 @@ void exibirListaDE(ListaDE lst)
   if(lst) {
       NoDE atual = lst->primeiro;
       printf("Exibindo Lista: \n\n");
+      int i;
       // percorre a lista
-      for (int i=0; i<lst->tamanho; i++) {
+      for (i=0; i<lst->tamanho; i++) {
         printf("Lista[%i]: %i \n", i+1, atual->info);
         atual = atual->prox;
       }
@@ -134,7 +135,8 @@ int adicionaNaPosicaoDE(ListaDE lst, TipoLDE info, int posicao) {
 
     // Percorre a lista enquanto nao chegar na posicao
     NoDE atual = lst->primeiro; // posicao = 0
-    for (int i=0; i<posicao-1; i++) {
+    int i;
+    for (i=0; i<posicao-1; i++) {
         atual = atual->prox;
     }
     NoDE prox = atual->prox;
@@ -198,9 +200,10 @@ int eliminaElemNaPosicaoDE(ListaDE lst, int posicao)
   if (!lst->tamanho || posicao > lst->tamanho) return -1;
 
   NoDE atual = lst->primeiro;
+  int i;
 
   // percorre a lista at� a posicao
-  for (int i=0; i<posicao; i++) {
+  for (i=0; i<posicao; i++) {
     atual = atual->prox;
   }
 
@@ -277,8 +280,9 @@ int removeElemEscolhidoDE(ListaDE lst, const TipoLDE info)
   NoDE prox = atual->prox;
   NoDE ant = atual->ant;
   int is_primeiro = 1;
+  int i;
 
-  for (int i=0; i<lst->tamanho; i++) {
+  for (i=0; i<lst->tamanho; i++) {
     if (info == atual->info) {
       // Atribui o proximo caso ainda seja o primeiro
       if (is_primeiro) lst->primeiro = prox;
@@ -333,8 +337,9 @@ int destruirListaDE(ListaDE lst)
   NoDE prox = atual->prox;
   NoDE ant = atual->ant;
   int is_primeiro = 1;
+  int i;
 
-  for (int i=0; i<lst->tamanho; i++) {
+  for (i=0; i<lst->tamanho; i++) {
     if (atual->info) {
       // Atribui o proximo caso ainda seja o primeiro
       if (is_primeiro) lst->primeiro = prox;
@@ -406,7 +411,8 @@ int retornaElemNaPosicaoDE(ListaDE lst, int posicao)
 
   // Percorre a lista enquanto nao chegar na posicao
   NoDE atual = lst->primeiro; // posicao = 0
-  for (int i=0; i<posicao-1; i++) {
+  int i;
+  for (i=0; i<posicao-1; i++) {
     atual = atual->prox;
   }
 
@@ -470,7 +476,8 @@ int procuraElemDE(ListaDE lst, int procurado)
 {
   // percorre a lista
   NoDE atual = lst->primeiro;
-  for (int i=0; i<lst->tamanho; i++) {
+  int i;
+  for (i=0; i<lst->tamanho; i++) {
     // compara o info com o procurado
     if (procurado == atual->info) return 1;
     atual = atual->prox;
@@ -494,9 +501,10 @@ void esvaziaListaDE(ListaDE lst)
 
   NoDE atual = lst->primeiro;
   NoDE prox = atual->prox;
+  int i;
 
   // Percorre a lista e libera espa�o de memoria de todos n�s e info
-  for (int i=0; i<lst->tamanho; i++) {
+  for (i=0; i<lst->tamanho; i++) {
     free(atual);
     atual = prox;
 
@@ -518,7 +526,8 @@ void esvaziaListaDE(ListaDE lst)
 void percorreDE(ListaDE lst)
 {
   NoDE atual = lst->primeiro;
-  for (int i=0; i<lst->tamanho; i++) {
+  int i;
+  for (i=0; i<lst->tamanho; i++) {
     printf("Lista[%i]: %i", i+1, atual->info);
     atual = atual->prox;
   }
