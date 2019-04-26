@@ -82,7 +82,7 @@ int buscaNaArbin(Arbin a, TipoA elem) {
     }
     if (elem == raizArbin(a)) {
         return 1;
-    } else (elem < raizArbin(a)) {
+    } else {
         return (buscaArbin(esqArbin(a), elem) || buscaArbin(dirArbin(a), elem));
     }
     return 0;
