@@ -32,5 +32,58 @@ int estaArbin(Arbin a, TipoA elem) {
         return 1;
     }
 
-    return estaArbin(esqArbin(a)) || estaArbin(dirArbin(a));
+    return estaArbin(esqArbin(a), elem) || estaArbin(dirArbin(a), elem);
+}
+
+Arbin insereABB(Arbin a, TipoA elem) {
+    if(vaziaArbin(a)) {
+        a = (Arbin)malloc(sizeof(struct NodoArbin));
+        a->info = elem;
+        a->esq = NULL;
+        a->dir = NULL;
+    } else if (elem < a->info) {
+        a->esq = insereABB(esqArbin(a), elem);
+    } else {
+        a->dir = insereABB(dirArbin(a), elem);
+    }
+
+    return a;
+}
+
+void visitar(TipoA elem) {
+    printf("  %d  \n", elem);
+}
+
+void preOrdemArbin(Arbin a) {
+    if(!vaziaArbin(a)) {
+        visitar(a->info);
+        preOrdemArbin(esqArbin(a));
+        preOrdemArbin(dirArbin(a));
+    }
+}
+
+int buscaNaArbinB(Arbin a, TipoA elem) {
+    if (vaziaArbin(a)) {
+        return 0;
+    }
+    if (elem == raizArbin(a)) {
+        return 1;
+    } else if (elem < raizArbin(a)) {
+        buscaArbin(esqArbin(a), elem);
+    } else {
+        buscaArbin(dirArbin(a), elem);
+    }
+    return 0;
+}
+
+int buscaNaArbin(Arbin a, TipoA elem) {
+    if (vaziaArbin(a)) {
+        return 0;
+    }
+    if (elem == raizArbin(a)) {
+        return 1;
+    } else (elem < raizArbin(a)) {
+        return (buscaArbin(esqArbin(a), elem) || buscaArbin(dirArbin(a), elem));
+    }
+    return 0;
 }
