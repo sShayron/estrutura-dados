@@ -69,9 +69,9 @@ int buscaNaArbinB(Arbin a, TipoA elem) {
     if (elem == raizArbin(a)) {
         return 1;
     } else if (elem < raizArbin(a)) {
-        buscaArbin(esqArbin(a), elem);
+        buscaNaArbinB(esqArbin(a), elem);
     } else {
-        buscaArbin(dirArbin(a), elem);
+        buscaNaArbinB(dirArbin(a), elem);
     }
     return 0;
 }
