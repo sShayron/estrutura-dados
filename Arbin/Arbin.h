@@ -40,9 +40,16 @@ TipoA raizArbin(Arbin a);
 
 //destrói a arvore binária, retornando toda a memória ocupada.
 void destruirArbin(Arbin a);
+int vaziaArbin(Arbin a);
 void visitar(TipoA elem);
 Arbin insereABB(Arbin a, TipoA elem);
-int buscaNaArbinB(Arbin a, TipoA elem);
+int buscaNaArbinABB(Arbin a, TipoA elem);
 int buscaNaArbin(Arbin a, TipoA elem);
 void preOrdemArbin(Arbin a);
+int pesoArbin(Arbin a);
+int eFolha(Arbin a);
+int numFolhas(Arbin a);
+int existeCaminho(Arbin a, TipoA elem1, TipoA elem2);
+int existeCaminhoABB(Arbin a, TipoA elem1, TipoA elem2);
+int contaNivel(Arbin a, int nivel);
 #endif // ARBIN_H_INCLUDED
