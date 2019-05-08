@@ -52,4 +52,5 @@ int numFolhas(Arbin a);
 int existeCaminho(Arbin a, TipoA elem1, TipoA elem2);
 int existeCaminhoABB(Arbin a, TipoA elem1, TipoA elem2);
 int contaNivel(Arbin a, int nivel);
+int iguaisArbin(Arbin a1, Arbin a2);
 #endif // ARBIN_H_INCLUDED
