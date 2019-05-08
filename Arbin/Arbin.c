@@ -142,3 +142,13 @@ int contaNivel(Arbin a, int nivel) {
     }
     return contaNivel(esqArbin(a), nivel - 1) + contaNivel(esqArbin(a), nivel - 1);
 }
+
+int iguaisArbin(Arbin a1, Arbin a2) {
+    if(vaziaArbin(a1) && vaziaArbin(a2)) {
+        return 1;
+    }
+    if (raizArbin(a1) == raizArbin(a2)) {
+        return iguaisArbin(esqArbin(a1), esqArbin(a2)) && iguaisArbin(dirArbin(a1), dirArbin(a2));
+    }
+    return 0;
+}
