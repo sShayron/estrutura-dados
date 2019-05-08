@@ -62,16 +62,16 @@ void preOrdemArbin(Arbin a) {
     }
 }
 
-int buscaNaArbinB(Arbin a, TipoA elem) {
+int buscaNaArbinABB(Arbin a, TipoA elem) {
     if (vaziaArbin(a)) {
         return 0;
     }
     if (elem == raizArbin(a)) {
         return 1;
     } else if (elem < raizArbin(a)) {
-        buscaNaArbinB(esqArbin(a), elem);
+        buscaNaArbinABB(esqArbin(a), elem);
     } else {
-        buscaNaArbinB(dirArbin(a), elem);
+        buscaNaArbinABB(dirArbin(a), elem);
     }
     return 0;
 }
@@ -86,4 +86,59 @@ int buscaNaArbin(Arbin a, TipoA elem) {
         return (buscaArbin(esqArbin(a), elem) || buscaArbin(dirArbin(a), elem));
     }
     return 0;
+}
+
+int pesoArbin(Arbin a) {
+    if (vaziaArbin(a)) {
+        return 0;
+    }
+
+    return 1 + pesoArbin(esqArbin(a)) + pesoArbin(dirArbin(a));
+}
+
+int eFolha(Arbin a) {
+    return !vaziaArbin(a) && vaziaArbin(esqArbin(a)) && dirArbin(dirArbin(a));
+}
+
+int numFolhas(Arbin a) {
+    if(vaziaArbin(a)) {
+        return 0;
+    }
+    if (eFolha(a)) {
+        return 1;
+    }
+    return numFolhas(esqArbin(a)) + numFolhas(dirArbin(a));
+}
+
+int existeCaminho(Arbin a, TipoA elem1, TipoA elem2) {
+    if(vaziaArbin(a)) {
+        return 0;
+    }
+    if (elem1 === raizArbin(a)) {
+        return buscaNaArbin(a, elem2);
+    }
+    return existeCaminho(esqArbin(a), elem1, elem2) || existeCaminho(dirArbin(a), elem1, elem2);
+}
+
+int existeCaminhoABB(Arbin a, TipoA elem1, TipoA elem2) {
+    if(vaziaArbin(a)) {
+        return 0;
+    }
+    if (elem1 === raizArbin(a)) {
+        return buscaNaArbin(a, elem2);
+    }
+    if (elem1 < raizArbin(a)) {
+        return existeCaminhoABB(esqArbin(a), elem1, elem2);
+    }
+    return existeCaminho(dirArbin(a), elem1, elem2);
+}
+
+int contaNivel(Arbin a, int nivel) {
+    if (vaziaArbin(a)) {
+        return 0;
+    }
+    if (nivel == 0) {
+        return 1;
+    }
+    return contaNivel(esqArbin(a), nivel - 1) + contaNivel(esqArbin(a), nivel - 1);
 }
