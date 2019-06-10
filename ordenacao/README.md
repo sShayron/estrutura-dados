@@ -34,7 +34,7 @@ int vetor[TAM],
     * Troque-o com o item da primeira posição do vetor.
     * Repita essas duas operações com os n − 1 itens restantes, depois com os n − 2 itens, até que reste apenas um elemento.
     * O método é ilustrado abaixo:
-    ![Ordenacao por selecao](https://raw.githubusercontent.com/sShayron/estrutura-dados/master/ordenacao/ordselecao.png)
+    ![Ordenacao por selecao](https://github.com/sShayron/estrutura-dados/blob/master/ordenacao/ordselecao.png)
       
       *Obs: As chaves em negrito sofreram uma troca entre si.*
       * Custo: *n log n*
@@ -45,7 +45,7 @@ int vetor[TAM],
         * Selecione o i - énesimo item da seqüência fonte.
         * Coloque-o no lugar apropriado na seqüência destino de acordo com o critério de ordenação.
          * O método é ilustrado abaixo:
-          ![Ordenacao por selecao](https://raw.githubusercontent.com/sShayron/estrutura-dados/master/ordenacao/ordinsec.png)
+          ![Ordenacao por selecao](https://github.com/sShayron/estrutura-dados/blob/master/ordenacao/ordinserc.png)
 
-            *Obs: As chaves em negrito sofreram uma troca entre si.*
+            *Obs: As chaves em negrito representam a seqüência destino.*
             * Custo: *n log n*
