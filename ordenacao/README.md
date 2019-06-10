@@ -45,7 +45,17 @@ int vetor[TAM],
   * Selecione o i - énesimo item da seqüência fonte.
   * Coloque-o no lugar apropriado na seqüência destino de acordo com o critério de ordenação.
    * O método é ilustrado abaixo:
-    ![Ordenacao por selecao](https://github.com/sShayron/estrutura-dados/blob/master/ordenacao/ordinserc.png)
+    ![Ordenacao por insercao](https://github.com/sShayron/estrutura-dados/blob/master/ordenacao/ordinserc.png)
 
       *Obs: As chaves em negrito representam a seqüência destino.*
       * Custo: *n log n*
+     
+## Ordernacao Shellsort
+* Algoritmo:
+   * O método é ilustrado abaixo:
+    ![Ordenacao shellsort](https://github.com/sShayron/estrutura-dados/blob/master/ordenacao/shelsort.png)
+    
+## Ordernacao Quicksort
+* Algoritmo:
+   * O método é ilustrado abaixo:
+    ![Ordenacao quicksort](https://github.com/sShayron/estrutura-dados/blob/master/ordenacao/quicksort.png)
