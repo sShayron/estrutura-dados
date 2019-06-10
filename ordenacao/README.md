@@ -40,12 +40,12 @@ int vetor[TAM],
       * Custo: *n log n*
       
 ## Ordernacao por insercao
-   * Algoritmo:
-      * Em cada passo a partir de i=2 faça:
-        * Selecione o i - énesimo item da seqüência fonte.
-        * Coloque-o no lugar apropriado na seqüência destino de acordo com o critério de ordenação.
-         * O método é ilustrado abaixo:
-          ![Ordenacao por selecao](https://github.com/sShayron/estrutura-dados/blob/master/ordenacao/ordinserc.png)
+* Algoritmo:
+* Em cada passo a partir de i=2 faça:
+  * Selecione o i - énesimo item da seqüência fonte.
+  * Coloque-o no lugar apropriado na seqüência destino de acordo com o critério de ordenação.
+   * O método é ilustrado abaixo:
+    ![Ordenacao por selecao](https://github.com/sShayron/estrutura-dados/blob/master/ordenacao/ordinserc.png)
 
-            *Obs: As chaves em negrito representam a seqüência destino.*
-            * Custo: *n log n*
+      *Obs: As chaves em negrito representam a seqüência destino.*
+      * Custo: *n log n*
