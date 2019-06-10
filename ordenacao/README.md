@@ -59,3 +59,6 @@ int vetor[TAM],
 * Algoritmo:
    * O método é ilustrado abaixo:
     ![Ordenacao quicksort](https://github.com/sShayron/estrutura-dados/blob/master/ordenacao/quicksort.png)
+   
+## Complexidade dos metodos
+![Complexidade dos metodos](https://github.com/sShayron/estrutura-dados/blob/master/ordenacao/complmetd.png)
