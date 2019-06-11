@@ -149,6 +149,44 @@ int contaNivel(Arbin a, int nivel) {
     return contaNivel(esqArbin(a), nivel - 1) + contaNivel(esqArbin(a), nivel - 1);
 }
 
+// 18)
+int nivelArbin(Arbin a, TipoA elem) {
+    if (!estaArbin(a, elem)) {
+        return -1;
+    }
+
+    return 1 + nivelArbin(esqArbin(a), elem) + nivelArbin(dirArbin(a), elem);
+}
+
+// 19)
+int maiorElementoArbin(Arbin a) {
+    if (vaziaArbin(a)) {
+        return -1;
+    }
+
+    int maior = raizArbin(a);
+    int maiorEsq = 0;
+    int maiorDir = 0;
+
+    if (!vaziaArbin(esqArbin(a))) {
+        maiorEsq = maiorElementoArbin(esqArbin(a));
+
+        if (maiorEsq > maior) {
+            maior = maiorEsq;
+        }
+    }
+
+    if (!vaziaArbin(dirArbin(a))) {
+        maiorDir = maiorElementoArbin(dirArbin(a));
+
+        if (maiorDir > maior) {
+            maior = maiorDir;
+        }
+    }
+
+    return maior;
+}
+
 // 11)
 int iguaisArbin(Arbin a1, Arbin a2) {
     if(vaziaArbin(a1) && vaziaArbin(a2)) {
@@ -233,5 +271,14 @@ int cheiaArbin(Arbin a) {
 
 // 16)
 int ocorreArbin(Arbin a1, Arbin a2) {
+    if (vaziaArbin(a2)) {
+        return 1;
+    }
+
+    if (estaArbin(a1, raizArbin(a2))) {
+        return ocorreArbin(a1, dirArbin(a2)) && ocorreArbin(a1, esqArbin(a2));
+    }
+
+    return 0;
 }
 
