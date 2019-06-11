@@ -61,4 +61,6 @@ int alturaArbin(Arbin a);
 int completaArbin(Arbin a);
 int cheiaArbin(Arbin a);
 int ocorreArbin(Arbin a1, Arbin a2);
+int nivelArbin(Arbin a, TipoA elem);
+int maiorElementoArbin(Arbin a);
 #endif // ARBIN_H_INCLUDED
