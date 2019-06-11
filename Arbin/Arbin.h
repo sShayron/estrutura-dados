@@ -53,4 +53,12 @@ int existeCaminho(Arbin a, TipoA elem1, TipoA elem2);
 int existeCaminhoABB(Arbin a, TipoA elem1, TipoA elem2);
 int contaNivel(Arbin a, int nivel);
 int iguaisArbin(Arbin a1, Arbin a2);
+int numOcorrencias(Arbin a, tipoInfo elem);
+int semelhantesArbin(Arbin a1, Arbin a2);
+int semelhantesArbinB(Arbin a1, Arbin a2);
+int maior(int a, int b);
+int alturaArbin(Arbin a);
+int completaArbin(Arbin a);
+int cheiaArbin(Arbin a);
+int ocorreArbin(Arbin a1, Arbin a2);
 #endif // ARBIN_H_INCLUDED
