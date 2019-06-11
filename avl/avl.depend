@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1560289038 source:c:\projetos\c\avl\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"avl.h"
+	"avl.c"
+
+1560288078 c:\projetos\c\avl\avl.h
+	<string.h>
+
+1560289219 c:\projetos\c\avl\avl.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"avl.h"
+
