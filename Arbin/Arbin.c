@@ -24,6 +24,7 @@ int vaziaArbin(Arbin a) {
     return 0;
 }
 
+// 2)
 int estaArbin(Arbin a, TipoA elem) {
     if(vaziaArbin(a)) {
         return 0;
@@ -88,6 +89,8 @@ int buscaNaArbin(Arbin a, TipoA elem) {
     return 0;
 }
 
+
+// 1)
 int pesoArbin(Arbin a) {
     if (vaziaArbin(a)) {
         return 0;
@@ -100,6 +103,7 @@ int eFolha(Arbin a) {
     return !vaziaArbin(a) && vaziaArbin(esqArbin(a)) && dirArbin(dirArbin(a));
 }
 
+// 3)
 int numFolhas(Arbin a) {
     if(vaziaArbin(a)) {
         return 0;
@@ -110,6 +114,7 @@ int numFolhas(Arbin a) {
     return numFolhas(esqArbin(a)) + numFolhas(dirArbin(a));
 }
 
+// 5)
 int existeCaminho(Arbin a, TipoA elem1, TipoA elem2) {
     if(vaziaArbin(a)) {
         return 0;
@@ -133,6 +138,7 @@ int existeCaminhoABB(Arbin a, TipoA elem1, TipoA elem2) {
     return existeCaminho(dirArbin(a), elem1, elem2);
 }
 
+// 6)
 int contaNivel(Arbin a, int nivel) {
     if (vaziaArbin(a)) {
         return 0;
@@ -143,6 +149,7 @@ int contaNivel(Arbin a, int nivel) {
     return contaNivel(esqArbin(a), nivel - 1) + contaNivel(esqArbin(a), nivel - 1);
 }
 
+// 11)
 int iguaisArbin(Arbin a1, Arbin a2) {
     if(vaziaArbin(a1) && vaziaArbin(a2)) {
         return 1;
@@ -152,3 +159,79 @@ int iguaisArbin(Arbin a1, Arbin a2) {
     }
     return 0;
 }
+
+//4)
+int numOcorrencias(Arbin a, tipoInfo elem){
+    if(vaziaArbin(a))
+        return 0;
+    else if(raizArbin(a) == elem)
+        return 1 + numOcorrencias(esqArbin(a),elem) + numOcorrencias(dirArbin(a),elem);
+    else
+        return numOcorrencias(esqArbin(a),elem) + numOcorrencias(dirArbin(a),elem);
+}
+
+// 7)
+int semelhantesArbin(Arbin a1, Arbin a2) {
+    if (pesoArbin(a1) != pesoArbin(a2)) {
+        return 0;
+    }
+    return semelhantesArbin(a1, a2);
+}
+
+int semelhantesArbinB(Arbin a1, Arbin a2) {
+    if(vaziaArbin(a1)) {
+        return 1;
+    }
+    if (estaArbin(a2, raizArbin(a1))) {
+        return semelhantesArbin(esqArbin(a1), a2) && semelhantesArbin(dirArbin(a1), a2);
+    }
+    return 0;
+}
+int maior(int a, int b){
+    if(a > b)
+        return a;
+    else
+        return b;
+}//maior
+
+// 10)
+int alturaArbin(Arbin a){
+   if((a == NULL) || (esqArbin(a) == NULL && dirArbin(a) == NULL))
+       return 0;
+   else
+       return 1 + maior(alturaArbin(esqArbin(a)), alturaArbin(dirArbin(a)));
+}
+
+// 12)
+int isomorfas(Arbin a1, Arbin a2) {
+    return (pesoArbin(a1) == pesoArbin(a2)) && (alturaArbin(a1) == alturaArbin(a2));
+}
+
+// 13)
+int completaArbin(Arbin a) {
+    int esqEdirVazia = (vaziaArbin(esqArbin(a)) && vaziaArbin(dirArbin(a)));
+    int esqEdirExiste = (!vaziaArbin(esqArbin(a)) && !vaziaArbin(dirArbin(a)));
+    if(a == NULL)
+       return 1;
+
+    if (esqEdirVazia || esqEdirExiste) {
+        return completaArbin(dirArbin(a)) && completaArbin(esqArbin(a));
+    }
+    return 0;
+}
+
+// 14)
+int cheiaArbin(Arbin a) {
+    if (vaziaArbin(a)) {
+        return 1;
+    }
+    if (numFolhas(dirArbin(a)) == numFolhas(esqArbin(a))) {
+        return cheiaArbin(esqArbin(a)) && cheiaArbin(dirArbin(a));
+    }
+    return 0;
+}
+
+// 16)
+int ocorreArbin(Arbin a1, Arbin a2) {
+}
+
