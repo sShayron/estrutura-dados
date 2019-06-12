@@ -37,7 +37,6 @@ int vetor[TAM],
     ![Ordenacao por selecao](https://github.com/sShayron/estrutura-dados/blob/master/ordenacao/ordselecao.png)
       
       *Obs: As chaves em negrito sofreram uma troca entre si.*
-      * Custo: *n log n*
       
 ## Ordernacao por insercao
 * Algoritmo:
@@ -48,7 +47,6 @@ int vetor[TAM],
     ![Ordenacao por insercao](https://github.com/sShayron/estrutura-dados/blob/master/ordenacao/ordinserc.png)
 
       *Obs: As chaves em negrito representam a seqüência destino.*
-      * Custo: *n log n*
      
 ## Ordernacao Shellsort
 * Algoritmo:
